@@ -16,7 +16,7 @@ The world have obstacles and dead obstacles, there is no time limit or movement 
 You can choose to restart yourself by pressing 'R' if you are stuck (and it will happen, trust me, not only once)
 There is no save system, if you quit, the game will restart at the level 1.
 There is no selection level system, if you finished a level you cannot go back.
-There is only 13 levels available, at the end of the project there will be 42 levels.
+There is only 17 levels available, at the end of the project there will be 42 levels.
 
     Control: 
     Left arrow: move to the left
