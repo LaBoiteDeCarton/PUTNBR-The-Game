@@ -18,24 +18,26 @@ void    start_game()
 
     i = 1;
     screenchange(stdscr);
+    levelinfo = newwin(WINF_HEIGHT, WINF_WIDTH, W_HEIGHT - WINF_HEIGHT - 1, 0);
+    box(levelinfo, 0, 0);
+    mvwprintw(levelinfo, 0, 2, "INFO");
+    mvwprintw(levelinfo, 2, 2, "Level %d:", i);
+    mvwprintw(levelinfo, 3, 2, "R to restart");
+    mvwprintw(levelinfo, 4, 2, "Q to quit");
     while (i < 43)
     {
-        levelinfo = newwin(WINF_HEIGHT, WINF_WIDTH, W_HEIGHT - WINF_HEIGHT - 1, 0);
-        box(levelinfo, 0, 0);
-        mvwprintw(levelinfo, 0, 2, "INFO");
         mvwprintw(levelinfo, 2, 2, "Level %d:", i);
-        mvwprintw(levelinfo, 3, 2, "R to restart");
-        mvwprintw(levelinfo, 4, 2, "Q to quit");
-        wrefresh(levelinfo);
         how_lend = start_level(levelinfo, i);
-        delwin(levelinfo);
         if (how_lend == end)
             break ;
-        if (how_lend == success)
+        if (i != 17 && how_lend == success)
             bravo(stdscr);
-        if (how_lend != retry && how_lend != fail)
+        if (i != 17 && how_lend != retry && how_lend != fail)
+            i++;
+        if (i == 17 && how_lend != retry && how_lend != success)
             i++;
     }
+    delwin(levelinfo);
 }
 
 levstat    start_level(WINDOW *levelinfo, int level)
@@ -50,6 +52,7 @@ levstat    start_level(WINDOW *levelinfo, int level)
     if (map != NULL)
     {  
         levelpg = newwin(map->height, map->width, (MIDDLE_PG_Y) - map->height / 2, (MIDDLE_PG_X) - map->width / 2);
+        mvwprintw(levelinfo, 2, 11, "                           ");
         mvwprintw(levelinfo, 2, 11, map->lname);
         wrefresh(levelinfo);
         while(map->stat == ongoing)
