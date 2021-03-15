@@ -24,7 +24,7 @@ void    start_game()
     mvwprintw(levelinfo, 2, 2, "Level %d:", i);
     mvwprintw(levelinfo, 3, 2, "R to restart");
     mvwprintw(levelinfo, 4, 2, "Q to quit");
-    while (i < 43)
+    while (i < 18)
     {
         mvwprintw(levelinfo, 2, 2, "Level %d:", i);
         how_lend = start_level(levelinfo, i);
@@ -52,7 +52,7 @@ levstat    start_level(WINDOW *levelinfo, int level)
     if (map != NULL)
     {  
         levelpg = newwin(map->height, map->width, (MIDDLE_PG_Y) - map->height / 2, (MIDDLE_PG_X) - map->width / 2);
-        mvwprintw(levelinfo, 2, 11, "                           ");
+        mvwprintw(levelinfo, 2, 11, "                            ");
         mvwprintw(levelinfo, 2, 11, map->lname);
         wrefresh(levelinfo);
         while(map->stat == ongoing)
